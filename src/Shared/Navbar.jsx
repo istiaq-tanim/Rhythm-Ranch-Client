@@ -27,6 +27,22 @@ const Navbar = () => {
               Home
             </NavLink>
           </li>
+          <li className="font-bold font-secondary">
+            <NavLink
+              to='/instructor'
+              className={({ isActive }) => (isActive ? 'text-blue-500' : '')}
+            >
+              Instructors
+            </NavLink>
+          </li>
+          <li className="font-bold font-secondary">
+            <NavLink
+              to='/classes'
+              className={({ isActive }) => (isActive ? 'text-blue-500' : '')}
+            >
+              Classes
+            </NavLink>
+          </li>
             <li className='font-bold font-secondary'>
               <NavLink
                 to='/login'
