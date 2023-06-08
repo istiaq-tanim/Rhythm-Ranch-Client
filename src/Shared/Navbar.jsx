@@ -1,19 +1,28 @@
 import { useState } from "react";
 import {
-    Bars3BottomRightIcon,
-    XMarkIcon,
-  } from '@heroicons/react/24/solid'
+  Bars3BottomRightIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/solid'
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+
 
 const Navbar = () => {
-    const [menuOpen, setMenuOpen] = useState(false)
-    return (
-        <div className='bg-rose-100 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8'>
+  const { user,logout } = useAuth()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const handleLogout = () =>
+  {
+    logout()
+    .then(()=>{})
+    .catch(error => console.log(error.message))
+  }
+  return (
+    <div className='bg-rose-100 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8'>
       <div className='relative flex items-center justify-between'>
         {/* Logo Section */}
         <Link to='/' className='inline-flex items-center'>
           <span className='ml-2 text-xl font-primary  font-bold tracking-wide text-gray-800'>
-          Rhythm <span className="text-blue-500 ">Ranch</span>
+            Rhythm <span className="text-blue-500 ">Ranch</span>
           </span>
         </Link>
 
@@ -43,7 +52,16 @@ const Navbar = () => {
               Classes
             </NavLink>
           </li>
-            <li className='font-bold font-secondary'>
+          {user ?
+            <>
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip-success tooltip" data-tip={user.displayName}>
+                <div className="w-10 rounded-full" >
+                  <img src={user.photoURL} />
+                </div>
+              </label>
+              <button onClick={handleLogout} className=' btn btn-info py-0 px-2 font-displayRob'>Sign out</button>
+            </> :
+            <li className='font-secondary font-semibold font-displayRob'>
               <NavLink
                 to='/login'
                 className={({ isActive }) => (isActive ? 'text-blue-500' : '')}
@@ -51,7 +69,8 @@ const Navbar = () => {
                 Login
               </NavLink>
             </li>
-         
+          }
+
         </ul>
         {/* Mobile Navbar Section */}
         <div className='lg:hidden'>
@@ -71,7 +90,7 @@ const Navbar = () => {
                   <div>
                     <Link to='/' className='inline-flex items-center'>
                       <span className='ml-2 text-xl font-bold font-primary tracking-wide text-gray-800 uppercase'>
-                      Rhythm <span className="text-blue-500 ">Ranch</span>
+                        Rhythm <span className="text-blue-500 ">Ranch</span>
                       </span>
                     </Link>
                   </div>
@@ -95,14 +114,14 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li className='font-bold'>
-                        <NavLink
-                          to='/login'
-                          className={({ isActive }) => (isActive ? 'text-blue-500' : '')}
-                        >
-                          Login
-                        </NavLink>
-                      </li>
-                   
+                      <NavLink
+                        to='/login'
+                        className={({ isActive }) => (isActive ? 'text-blue-500' : '')}
+                      >
+                        Login
+                      </NavLink>
+                    </li>
+
                   </ul>
                 </nav>
               </div>
@@ -113,7 +132,7 @@ const Navbar = () => {
     </div>
   );
 };
-    
+
 
 
 export default Navbar;

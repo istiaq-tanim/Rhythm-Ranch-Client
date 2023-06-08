@@ -7,6 +7,8 @@ import Main from "../Layouts/Main";
 import Home from "../Pages/Home/Home/Home";
 import Instructors from "../Pages/Instructors/Instructors";
 import SignUp from "../Register/SignUp";
+import Login from "../Register/Login";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -21,12 +23,16 @@ const router = createBrowserRouter([
             },
             {
                 path:"/instructor",
-                element:<Instructors></Instructors>
+                element:<PrivateRoutes><Instructors></Instructors></PrivateRoutes>
             },
             {
                 path:"/signUp",
                 element:<SignUp></SignUp>
             },
+            {
+                path:"/login",
+                element:<Login></Login>
+            }
             
 
         ]

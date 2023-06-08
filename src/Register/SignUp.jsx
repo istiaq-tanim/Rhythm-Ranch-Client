@@ -1,12 +1,40 @@
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+import SocialLogin from "../Shared/SocialLogin";
+import Swal from 'sweetalert2'
 
 const SignUp = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit,reset, watch, formState: { errors } } = useForm();
+    const {createUser,updateUserProfile}=useAuth()
+    
+    const navigate=useNavigate()
 
     const password = useRef({});
     password.current = watch('password', '');
-    const onSubmit = data => { console.log(data) };
+    const onSubmit = data => {console.log(data) 
+        createUser(data.email,data.password)
+        .then(result => {
+            const user=result.user;
+            console.log(user)
+            updateUserProfile(data.name,data.photo)
+            .then(()=>{
+                reset()
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'User created Successfully',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                navigate("/")
+            })
+            .catch(error => console.log(error.message))
+        })
+        .catch(error => console.log(error.message))
+    
+    };
     return (
         <div>
             <div className="hero min-h-screen bg-base-200 w-full">
@@ -56,6 +84,18 @@ const SignUp = () => {
                             </div>
                             <input className="btn btn-primary mt-6" type="submit" value="Submit" />
                         </form>
+
+                        <SocialLogin></SocialLogin>
+                        <p className="my-2 text-xs font-light text-center text-gray-700">
+                        {" "}
+                        Already have an account?{" "}
+                        <Link
+                            to="/login"
+                            className="font-medium text-purple-600 hover:underline"
+                        >
+                            Login
+                        </Link>
+                    </p>
                     </div>
                 </div>
             </div>
@@ -64,4 +104,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-///^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/

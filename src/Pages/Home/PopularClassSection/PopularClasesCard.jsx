@@ -6,6 +6,9 @@ const PopularClasesCard = ({item}) => {
              <figure><img src={image} className="w-full object-cover" alt="Shoes" /></figure>      
                <div className="card-body justify-center  text-center">
                 <h2 className="font-bold text-xl text-cyan-500">{class_name}</h2>
+                <div>
+                    <button className="btn btn-outline border-t-0 border-x-0 mt-5 border-b-4 btn-info">Read More</button>
+                </div>
             </div>
             </div>
         </div>
