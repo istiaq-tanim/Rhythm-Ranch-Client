@@ -7,14 +7,14 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 
+
 const Navbar = () => {
-  const { user,logout } = useAuth()
+  const { user, logout } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
-  const handleLogout = () =>
-  {
+  const handleLogout = () => {
     logout()
-    .then(()=>{})
-    .catch(error => console.log(error.message))
+      .then(() => { })
+      .catch(error => console.log(error.message))
   }
   return (
     <div className='bg-rose-100 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8'>
@@ -59,6 +59,14 @@ const Navbar = () => {
                   <img src={user.photoURL} />
                 </div>
               </label>
+              <span className="font-bold font-secondary">
+              <NavLink 
+                to='dashboard/manageUser'
+                className={({ isActive }) => (isActive ? 'text-blue-500' : '')}
+              >
+                DashBoard
+              </NavLink>
+              </span>
               <button onClick={handleLogout} className=' btn btn-info py-0 px-2 font-displayRob'>Sign out</button>
             </> :
             <li className='font-secondary font-semibold font-displayRob'>
