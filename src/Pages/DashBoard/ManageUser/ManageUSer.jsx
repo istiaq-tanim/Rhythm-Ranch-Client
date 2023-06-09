@@ -1,16 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
 import ManageUserRow from "./ManageUserRow";
 import useAuth from "../../../hooks/useAuth";
+import useUser from "../../../hooks/useUser";
 
 const ManageUSer = () => {
     const {user}=useAuth() 
-    const { data: users = [], refetch } = useQuery({
-        queryKey: ["users"],
-        queryFn: async () => {
-            const res = await fetch("http://localhost:5000/users")
-            return res.json()
-        }
-    })
+    const [users,refetch]=useUser()
+   
     const allUser=users.filter(item => item.email !== user.email)
     console.log(allUser)
     return (

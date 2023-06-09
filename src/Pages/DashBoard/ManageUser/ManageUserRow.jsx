@@ -4,10 +4,10 @@ import Swal from 'sweetalert2'
 const ManageUserRow = ({ user, index, refetch }) => {
     const { _id, email, name, role } = user
     const [isButtonDisabledAdmin, setIsButtonDisabledAdmin] = useState(false);
-   
     const [isButtonDisabledInstructor,setIsButtonDisabledInstructor]=useState(false)
     const handleAdmin = (id, name) => {
         setIsButtonDisabledAdmin(true);
+        setIsButtonDisabledInstructor(false)
         fetch(`http://localhost:5000/users/admin/${id}`, {
             method: "PATCH"
         })
@@ -29,6 +29,7 @@ const ManageUserRow = ({ user, index, refetch }) => {
     }
     const handleInstructor = (id, name) => {
         setIsButtonDisabledInstructor(true);
+        setIsButtonDisabledAdmin(false)
         fetch(`http://localhost:5000/users/instructor/${id}`, {
             method: "PATCH"
         })

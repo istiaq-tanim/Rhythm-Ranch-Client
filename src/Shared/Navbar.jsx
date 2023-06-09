@@ -1,21 +1,34 @@
-import { useState } from "react";
+
 import {
   Bars3BottomRightIcon,
   XMarkIcon,
 } from '@heroicons/react/24/solid'
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { useEffect, useState } from 'react';
 
 
 
 const Navbar = () => {
   const { user, logout } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const [role,setRole]=useState("")
+
+    useEffect(()=>{
+     
+        fetch(`http://localhost:5000/users/${user?.email}`)
+        .then(res => res.json())
+        .then(data => setRole(data.role))
+
+    },[user?.email])
   const handleLogout = () => {
     logout()
       .then(() => { })
       .catch(error => console.log(error.message))
   }
+
+
   return (
     <div className='bg-rose-100 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8'>
       <div className='relative flex items-center justify-between'>
@@ -60,12 +73,14 @@ const Navbar = () => {
                 </div>
               </label>
               <span className="font-bold font-secondary">
-              <NavLink 
-                to='dashboard/manageUser'
-                className={({ isActive }) => (isActive ? 'text-blue-500' : '')}
-              >
-                DashBoard
-              </NavLink>
+               {
+                role === "admin" ? <NavLink to='/dashboard/manageUser' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>DashBoard</NavLink> 
+                 : role === "instructor"  ?
+                 <NavLink to='/dashboard/addClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
+                DashBoard</NavLink> : <NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
+                DashBoard</NavLink>
+               }
+              
               </span>
               <button onClick={handleLogout} className=' btn btn-info py-0 px-2 font-displayRob'>Sign out</button>
             </> :

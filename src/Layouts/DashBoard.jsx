@@ -1,9 +1,22 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaHome, FaUsers } from 'react-icons/fa';
+import useAuth from "../hooks/useAuth";
+import { useEffect, useState } from "react";
+
+
 
 const DashBoard = () => {
-    const isAdmin = true;
-    const isInstructor=false
+    const {user}=useAuth()
+    const [role,setRole]=useState("")
+
+    useEffect(()=>{
+     
+        fetch(`http://localhost:5000/users/${user.email}`)
+        .then(res => res.json())
+        .then(data => setRole(data.role))
+
+    },[user.email])
+
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -17,11 +30,12 @@ const DashBoard = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 h-full bg-cyan-200 text-base-content">
                         {
-                            isAdmin ? <>
-                                <li className="text-lg"><NavLink to="manageClasses">Manage Classes</NavLink></li>
-                                <li className="text-lg"><NavLink to="manageUser"><FaUsers></FaUsers>Manage Users</NavLink></li>
-                            </> : isInstructor ? <>
-                            
+                            role === "admin" ? <>
+                                <li className="text-lg"><NavLink to="/dashboard/manageClasses">Manage Classes</NavLink></li>
+                                <li className="text-lg"><NavLink to="/dashboard/manageUser"><FaUsers></FaUsers>Manage Users</NavLink></li>
+                            </> : role === "instructor" ? <>
+                            <li className="text-lg"><NavLink to="/dashboard/addClass">Add a Classes</NavLink></li>
+                            <li className="text-lg"><NavLink to="/dashboard/myClass">My Class</NavLink></li>
                             </> :
                             
                             
