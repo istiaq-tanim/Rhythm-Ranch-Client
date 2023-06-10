@@ -7,7 +7,7 @@ import PopularClasesCard from "./PopularClasesCard";
 const PopularClassSection = () => {
     const [classesItems, setClassesItems] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/courses")
+        fetch("http://localhost:5000/popularCourses")
             .then(res => res.json())
             .then(data => setClassesItems(data))
     }, [])

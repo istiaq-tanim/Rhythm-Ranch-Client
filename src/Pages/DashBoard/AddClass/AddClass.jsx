@@ -1,4 +1,5 @@
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const AddClass = () => {
     const {user}=useAuth()
@@ -13,14 +14,51 @@ const AddClass = () => {
         const price=form.price.value;
         const available_set=form.seat.value;
 
-        console.log(class_name,instructor_name,email,price,available_set)
+        const classImage=form.image.files[0]
+        
+        const formData=new FormData()
+        formData.append("image",classImage)
 
+        const url=`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMG_BB}`
 
+        fetch(url,{
+            method:"POST",
+            body:formData
+        }).then(res => res.json())
+        .then(data => {
+            if(data.success)
+            {
+                const image=data.data.display_url;
+                const addClass={class_name,image,instructor_name,email, price: parseFloat(price) ,available_set:parseInt(available_set),status:"pending",enroll_student:0}
+                
+                fetch("http://localhost:5000/courses",{
+                    method:"POST",
+                    headers:{"content-type":"application/json"},
+                    body:JSON.stringify(addClass)
+                }).then(res => res.json())
+                .then(data => {
+                    if(data.insertedId)
+                    {
+                        form.reset();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Class added successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
+                    }
+                })
+            }
+        })
+        .catch(error => console.log(error.message))
+
+        
      }
     return (
         
         <div className="bg-[#F4F3F0] w-[90%] p-10">
-            <h2 className="text-3xl font-extrabold text-center">Add a Class</h2>
+            <h2 className="text-3xl font-extrabold text-center font-primary">Add Class</h2>
             <form onSubmit={handleSubmit}>
                 
                     <div className="form-control w-full">
@@ -75,7 +113,7 @@ const AddClass = () => {
               <input required type='file' id='image' name='image' accept='image/*'/>
             </div>
             
-                <input type="submit" value="Add Coffee" className="btn btn-block mt-5 btn-primary" />
+                <input type="submit" value="Add Class" className="btn btn-block mt-5 btn-primary" />
 
             </form>
         </div>

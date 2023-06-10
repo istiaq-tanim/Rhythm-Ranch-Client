@@ -5,9 +5,7 @@ import useUser from "../../../hooks/useUser";
 const ManageUSer = () => {
     const {user}=useAuth() 
     const [users,refetch]=useUser()
-   
     const allUser=users.filter(item => item.email !== user.email)
-    console.log(allUser)
     return (
         <div className="w-full">
             <h3 className="text-center text-3xl font-secondary font-bold">Manage All User</h3>
