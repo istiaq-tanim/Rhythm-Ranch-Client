@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ManageClassesRow = ({ item , refetch}) => {
@@ -61,7 +62,7 @@ const ManageClassesRow = ({ item , refetch}) => {
                 <th>{status}</th>
                 <th><button disabled={isButtonDisabled} onClick={() => handleApprove(_id)} className="btn btn-xs bg-sky-300">Approve</button></th>
                 <th><button disabled={isButtonDisabled} onClick={() => handleDeny(_id)}  className="btn btn-xs bg-red-300">Deny</button></th>
-                <th><button className="btn btn-xs bg-green-300">FeedBack</button></th>
+                <th ><Link to={`/dashboard/feedback/${_id}`}><button className="btn btn-md text-xs bg-green-300">Send FeedBack</button></Link></th>
             </tr>
         
     );
