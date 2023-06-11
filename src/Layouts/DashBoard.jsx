@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaHome, FaUsers } from 'react-icons/fa';
+import { FaBookReader, FaHome, FaUsers } from 'react-icons/fa';
+import { HiUserGroup } from "react-icons/hi2";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 
@@ -37,19 +38,15 @@ const DashBoard = () => {
                             <li className="text-lg"><NavLink to="/dashboard/addClass">Add a Classes</NavLink></li>
                             <li className="text-lg"><NavLink to="/dashboard/myClass">My Class</NavLink></li>
                             </> :
-                              
                             <>
                              <li className="text-lg"><NavLink to="/dashboard/studentClass">My Selected Class</NavLink></li>
                              <li className="text-lg"><NavLink to="/dashboard/enrolled">My Enrolled Course</NavLink></li>
-                            
-                            </>
-                            
-                           
+                            </> 
                         }
-
                         <div className="divider"></div>
                         <li className="text-lg"><NavLink to="/"><FaHome></FaHome>Home</NavLink></li>
-
+                        <li className="text-lg"><NavLink to="/instructor"><HiUserGroup></HiUserGroup>Instructors</NavLink></li>
+                        <li className="text-lg"><NavLink to="/classes"><FaBookReader></FaBookReader>Classes</NavLink></li>
                     </ul>
 
                 </div>

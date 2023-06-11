@@ -23,7 +23,8 @@ const AddClass = () => {
 
         fetch(url,{
             method:"POST",
-            body:formData
+            body:formData,
+            mode:"no-cors"
         }).then(res => res.json())
         .then(data => {
             if(data.success)
