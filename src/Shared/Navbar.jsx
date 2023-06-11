@@ -76,7 +76,8 @@ const Navbar = () => {
                 role === "admin" ? <NavLink to='/dashboard/manageUser' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>DashBoard</NavLink> 
                  : role === "instructor"  ?
                  <NavLink to='/dashboard/addClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
-                DashBoard</NavLink> : <NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
+                DashBoard</NavLink> : 
+                <NavLink to='/dashboard/studentClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
                 DashBoard</NavLink>
                }
               

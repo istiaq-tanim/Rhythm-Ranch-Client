@@ -37,9 +37,12 @@ const DashBoard = () => {
                             <li className="text-lg"><NavLink to="/dashboard/addClass">Add a Classes</NavLink></li>
                             <li className="text-lg"><NavLink to="/dashboard/myClass">My Class</NavLink></li>
                             </> :
+                              
+                            <>
+                             <li className="text-lg"><NavLink to="/dashboard/studentClass">My Selected Class</NavLink></li>
+                             <li className="text-lg"><NavLink to="/dashboard/enrolled">My Enrolled Course</NavLink></li>
                             
-                            
-                            <></>
+                            </>
                             
                            
                         }

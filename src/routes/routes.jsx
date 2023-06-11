@@ -16,6 +16,9 @@ import AddClass from "../Pages/DashBoard/AddClass/AddClass";
 import MyClass from "../Pages/DashBoard/AddClass/MyClass/MyClass";
 import FeedBack from "../Pages/DashBoard/ManageClasses/FeedBack";
 import AllClass from "../Pages/AllClass/AllClass";
+import StudentClass from "../Pages/DashBoard/StudentClass/StudentClass";
+import EnrolledClass from "../Pages/DashBoard/EnrolledClass/EnrolledClass";
+
 
 const router = createBrowserRouter([
     {
@@ -66,6 +69,14 @@ const router = createBrowserRouter([
             {
                 path:"myClass",
                 element:<MyClass></MyClass>
+            },
+            {
+               path:"studentClass",
+               element:<StudentClass></StudentClass>
+            },
+            {
+                path:"enrolled",
+                element:<EnrolledClass></EnrolledClass>
             },
             {
                 path:"feedback/:id",
