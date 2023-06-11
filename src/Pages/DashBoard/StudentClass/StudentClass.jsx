@@ -1,8 +1,5 @@
 import useCarts from "../../../hooks/useCarts";
 import StudentClassRow from "./StudentClassrow";
-
-
-
 const StudentClass = () => {
     const [cart, refetch] = useCarts()
     return (

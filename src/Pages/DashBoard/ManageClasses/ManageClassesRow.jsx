@@ -52,8 +52,8 @@ const ManageClassesRow = ({ item , refetch}) => {
             <tr className="text-center">
 
                 <th>{class_name}</th>
-                <th> <div className="mask mask-squircle ">
-                    <img src={image} className="object-fill w-12 h-12 " alt="Avatar Tailwind CSS Component" />
+                <th> <div className="mask ">
+                    <img src={image} className="object-fill w-12 h-12 mx-auto" alt="Avatar Tailwind CSS Component" />
                 </div></th>
                 <th>{instructor_name}</th>
                 <th>{email}</th>
