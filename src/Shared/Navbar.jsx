@@ -16,10 +16,9 @@ const Navbar = () => {
   const [role,setRole]=useState("")
 
     useEffect(()=>{
-     
         fetch(`http://localhost:5000/users/${user?.email}`)
         .then(res => res.json())
-        .then(data => setRole(data.role))
+        .then(data => setRole(data?.role))
 
     },[user?.email])
   const handleLogout = () => {
