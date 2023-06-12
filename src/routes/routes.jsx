@@ -9,7 +9,6 @@ import Instructors from "../Pages/Instructors/Instructors";
 import SignUp from "../Register/SignUp";
 import Login from "../Register/Login";
 import PrivateRoutes from "./PrivateRoutes";
-import DashBoard from "../Layouts/Dashboard";
 import ManageUSer from "../Pages/DashBoard/ManageUser/ManageUSer";
 import ManageClasses from "../Pages/DashBoard/ManageClasses/ManageClasses";
 import AddClass from "../Pages/DashBoard/AddClass/AddClass";
@@ -18,6 +17,8 @@ import FeedBack from "../Pages/DashBoard/ManageClasses/FeedBack";
 import AllClass from "../Pages/AllClass/AllClass";
 import StudentClass from "../Pages/DashBoard/StudentClass/StudentClass";
 import EnrolledClass from "../Pages/DashBoard/EnrolledClass/EnrolledClass";
+import Payment from "../Pages/DashBoard/AddClass/Payment/Payment";
+import DashBoard from "../Layouts/DashBoard";
 
 
 const router = createBrowserRouter([
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
             {
                 path:"feedback/:id",
                 element:<FeedBack></FeedBack>
+            },
+            {
+                path:"payment/:id",
+                element:<Payment></Payment>
             }
         ]
     }
