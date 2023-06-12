@@ -19,6 +19,7 @@ import StudentClass from "../Pages/DashBoard/StudentClass/StudentClass";
 import EnrolledClass from "../Pages/DashBoard/EnrolledClass/EnrolledClass";
 import Payment from "../Pages/DashBoard/AddClass/Payment/Payment";
 import DashBoard from "../Layouts/DashBoard";
+import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
 
 
 const router = createBrowserRouter([
@@ -86,7 +87,12 @@ const router = createBrowserRouter([
             {
                 path:"payment/:id",
                 element:<Payment></Payment>
+            },
+            {
+                path:"paymentHistory",
+                element:<PaymentHistory></PaymentHistory>
             }
+
         ]
     }
 ]);

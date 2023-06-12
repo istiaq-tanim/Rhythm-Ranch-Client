@@ -86,7 +86,8 @@ const CheckoutForm = ({ price , class_id}) => {
             .then(res => res.json())
             .then(data =>
                 {
-                    if(data.insertedId)
+                    console.log(data)
+                    if(data.result.insertedId && data.deleteResult.deletedCount > 0  && data.updateResult.modifiedCount>0)
                     {
                         Swal.fire({
                             position: 'top-end',

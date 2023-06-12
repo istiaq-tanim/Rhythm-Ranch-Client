@@ -41,6 +41,7 @@ const DashBoard = () => {
                             <>
                              <li className="text-lg"><NavLink to="/dashboard/studentClass">My Selected Class</NavLink></li>
                              <li className="text-lg"><NavLink to="/dashboard/enrolled">My Enrolled Course</NavLink></li>
+                             <li className="text-lg"><NavLink to="/dashboard/paymentHistory">Payment History</NavLink></li>
                             </> 
                         }
                         <div className="divider"></div>
