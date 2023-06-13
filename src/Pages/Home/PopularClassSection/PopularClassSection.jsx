@@ -14,7 +14,7 @@ const PopularClassSection = () => {
 
     return (
         <Container>
-            <h3 className="text-3xl text-center">Popular Classes</h3>
+            <h3 className="text-3xl text-center font-primary font-bold">Popular Classes</h3>
             <div className="grid grid-cols-3 gap-10 mt-10">
                 {
                     classesItems.map(item => <PopularClasesCard key={item._id} item={item}></PopularClasesCard>)

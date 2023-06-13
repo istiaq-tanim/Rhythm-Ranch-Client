@@ -20,6 +20,8 @@ import EnrolledClass from "../Pages/DashBoard/EnrolledClass/EnrolledClass";
 import Payment from "../Pages/DashBoard/AddClass/Payment/Payment";
 import DashBoard from "../Layouts/DashBoard";
 import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstrustorRoute";
 
 
 const router = createBrowserRouter([
@@ -57,41 +59,42 @@ const router = createBrowserRouter([
         children:
         [
             {
+                path:"studentClass",
+                element:<StudentClass></StudentClass>
+             },
+             {
+                 path:"enrolled",
+                 element:<EnrolledClass></EnrolledClass>
+             },
+             {
+                 path:"feedback/:id",
+                 element:<FeedBack></FeedBack>
+             },
+             {
+                 path:"payment/:id",
+                 element:<Payment></Payment>
+             },
+             {
+                 path:"paymentHistory",
+                 element:<PaymentHistory></PaymentHistory>
+             },
+            {
                path:"manageUser",
-               element:<ManageUSer></ManageUSer>
+               element:<AdminRoute><ManageUSer></ManageUSer></AdminRoute>
             },
             {
                path:"manageClasses",
-               element:<ManageClasses></ManageClasses>
+               element:<AdminRoute><ManageClasses></ManageClasses></AdminRoute>
             },
             {
                 path:"addClass",
-                element:<AddClass></AddClass>
+                element:<InstructorRoute><AddClass></AddClass></InstructorRoute>
             },
             {
                 path:"myClass",
-                element:<MyClass></MyClass>
-            },
-            {
-               path:"studentClass",
-               element:<StudentClass></StudentClass>
-            },
-            {
-                path:"enrolled",
-                element:<EnrolledClass></EnrolledClass>
-            },
-            {
-                path:"feedback/:id",
-                element:<FeedBack></FeedBack>
-            },
-            {
-                path:"payment/:id",
-                element:<Payment></Payment>
-            },
-            {
-                path:"paymentHistory",
-                element:<PaymentHistory></PaymentHistory>
+                element:<InstructorRoute><MyClass></MyClass></InstructorRoute>
             }
+            
 
         ]
     }

@@ -6,11 +6,14 @@ export default {
   ],
   theme: {
     extend: {},
-    fontFamily: 
+    fontFamily:
     {
       primary: ["Libre Baskerville", "serif"],
       secondary: ["Roboto", "sans-serif"],
     },
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark"],
+  }
 }

@@ -11,7 +11,7 @@ const InstructorSection = () => {
     },[])
     return (
         <Container>
-            <h3 className="text-3xl text-center">Instructor Section</h3>
+            <h3 className="text-3xl text-center font-primary font-bold">Instructor Section</h3>
 
             <div className="grid grid-cols-6 gap-5 my-10">
                 {
