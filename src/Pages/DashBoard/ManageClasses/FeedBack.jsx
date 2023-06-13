@@ -4,13 +4,16 @@ import Swal from "sweetalert2";
 
 const FeedBack = () => {
     const [feedback, setFeedback] = useState('');
+    const token=localStorage.getItem("access-token")
     const { id } = useParams()
     console.log(id)
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch(`http://localhost:5000/courses/feedback/${id}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { authorization: `bearer ${token}`,
+            'Content-Type': "application/json",
+            },
             body: JSON.stringify({ feedback })
         }
         ).then(res => res.json())

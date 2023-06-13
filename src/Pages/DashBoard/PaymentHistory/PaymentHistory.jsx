@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import PaymentHistoryRow from "./PaymentHistoryRow";
+import axios from "axios";
 
 const PaymentHistory = () => {
     const { user } = useAuth()
     const [payment, setPayment] = useState([])
+    const token = localStorage.getItem("access-token")
 
     useEffect(() => {
-        fetch(`http://localhost:5000/paymentHistory?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => setPayment(data))
-    }, [user.email])
+        axios.get(`http://localhost:5000/paymentHistory?email=${user?.email}`, { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } })
+            .then(res => setPayment(res.data))
+    }, [token, user?.email])
 
     return (
         <div className="w-[90%] mx-auto">

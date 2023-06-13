@@ -13,14 +13,14 @@ const Navbar = () => {
   const { user, logout } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const [role,setRole]=useState("")
+  const [role, setRole] = useState("")
 
-    useEffect(()=>{
-        fetch(`http://localhost:5000/users/${user?.email}`)
-        .then(res => res.json())
-        .then(data => setRole(data?.role))
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user?.email}`)
+      .then(res => res.json())
+      .then(data => setRole(data.role))
 
-    },[user?.email])
+  }, [user?.email])
   const handleLogout = () => {
     logout()
       .then(() => { })
@@ -64,6 +64,17 @@ const Navbar = () => {
               Classes
             </NavLink>
           </li>
+          <span className="font-bold font-secondary">
+            {
+              role === "admin" ? <NavLink to='/dashboard/manageUser' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>DashBoard</NavLink>
+                : role === "instructor" ?
+                  <NavLink to='/dashboard/addClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
+                    DashBoard</NavLink> :
+                  <NavLink to='/dashboard/studentClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
+                    DashBoard</NavLink>
+            }
+
+          </span>
           {user ?
             <>
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip-success tooltip" data-tip={user.displayName}>
@@ -71,17 +82,7 @@ const Navbar = () => {
                   <img src={user.photoURL} />
                 </div>
               </label>
-              <span className="font-bold font-secondary">
-               {
-                role === "admin" ? <NavLink to='/dashboard/manageUser' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>DashBoard</NavLink> 
-                 : role === "instructor"  ?
-                 <NavLink to='/dashboard/addClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
-                DashBoard</NavLink> : 
-                <NavLink to='/dashboard/studentClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
-                DashBoard</NavLink>
-               }
-              
-              </span>
+
               <button onClick={handleLogout} className=' btn btn-info py-0 px-2 font-displayRob'>Sign out</button>
             </> :
             <li className='font-secondary font-semibold font-displayRob'>

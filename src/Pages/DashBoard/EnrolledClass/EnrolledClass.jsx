@@ -6,12 +6,11 @@ import EnrollClassRow from "./EnrollClassRow";
 const EnrolledClass = () => {
     const { user } = useAuth()
     const [enroll, setEnroll] = useState([])
+    const token=localStorage.getItem("access-token")
     useEffect(() => {
-
-        axios.get(`http://localhost:5000/enroll/${user?.email}`)
-            .then(res => setEnroll(res.data))
-
-    }, [user.email])
+        axios.get(`http://localhost:5000/enroll/${user?.email}`, {headers: {Authorization: `Bearer ${token}`,'Content-Type': 'application/json'}})
+        .then(res => setEnroll(res.data))
+    }, [token, user?.email])
 
 
     return (

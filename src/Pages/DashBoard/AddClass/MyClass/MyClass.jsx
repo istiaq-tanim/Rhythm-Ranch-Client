@@ -1,12 +1,20 @@
-import axios from 'axios';
+// import axios from 'axios';
 import useAuth from './../../../../hooks/useAuth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MyClassRow from './MyClassRow';
 const MyClass = () => {
     const { user } = useAuth()
     const [myClass,setMyClass]=useState([])
-    axios.get(`http://localhost:5000/instructorClasses?email=${user.email}`)
-    .then(res => setMyClass(res.data))
+    const token=localStorage.getItem("access-token")
+
+    useEffect(()=>{
+        fetch(`http://localhost:5000/instructorClasses?email=${user.email}`, { headers: {
+                     authorization: `bearer ${token}`
+                }})
+                .then(res => res.json())
+                .then(data => setMyClass(data))
+    },[token, user?.email])
+  
     return (
         <div className='w-full px-5'>
             <h3 className='text-center text-3xl'>My Classes is here</h3>
@@ -38,3 +46,6 @@ const MyClass = () => {
 };
 
 export default MyClass;
+
+// axios.get(`http://localhost:5000/instructorClasses?email=${user.email}`)
+// .then(res => setMyClass(res.data))

@@ -17,7 +17,8 @@ const AllClassCard = ({ item }) => {
             const selectedClass = { class_id: _id, class_name, image, instructor_name, available_set, price, email: user.email }
             fetch("http://localhost:5000/carts", {
                 method: "POST",
-                headers: { "content-type": "application/json" },
+                headers: { 
+                "content-type": "application/json" },
                 body: JSON.stringify(selectedClass)
 
             }).then(res => res.json())
