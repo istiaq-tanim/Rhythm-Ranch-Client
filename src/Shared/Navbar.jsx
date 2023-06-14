@@ -6,38 +6,33 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from 'react';
+import useInstructor from '../hooks/useInstructor';
+import useAdmin from '../hooks/useAdmin';
 
 
 
 const Navbar = () => {
   const { user, logout } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isAdmin] = useAdmin()
+  const [isInstructor] = useInstructor()
 
-  const [role, setRole] = useState("")
-  const [theme,setTheme]=useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light")
-  const handleToggle = (event)=>
-  {
-    if(event.target.checked)
-    {
+  
+  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light")
+  const handleToggle = (event) => {
+    if (event.target.checked) {
       setTheme("dark")
     }
-    else{
+    else {
       setTheme("light")
     }
   }
 
-  useEffect(()=>{
-    localStorage.setItem("theme",theme)
-    const localTheme=localStorage.getItem("theme")
-    document.querySelector("html").setAttribute("data-theme",localTheme)
-  },[theme])
-
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user?.email}`)
-      .then(res => res.json())
-      .then(data => setRole(data.role))
-
-  }, [user?.email])
+    localStorage.setItem("theme", theme)
+    const localTheme = localStorage.getItem("theme")
+    document.querySelector("html").setAttribute("data-theme", localTheme)
+  }, [theme])
   const handleLogout = () => {
     logout()
       .then(() => { })
@@ -83,8 +78,8 @@ const Navbar = () => {
           </li>
           <span className="font-bold font-secondary">
             {
-              role === "admin" ? <NavLink to='/dashboard/manageUser' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>DashBoard</NavLink>
-                : role === "instructor" ?
+              isAdmin ? <NavLink to='/dashboard/manageUser' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>DashBoard</NavLink>
+                : isInstructor ?
                   <NavLink to='/dashboard/addClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
                     DashBoard</NavLink> :
                   <NavLink to='/dashboard/studentClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>

@@ -31,7 +31,7 @@ const AddClass = () => {
                     const image = data.data.display_url;
                     const addClass = { class_name, image, instructor_name, email, price: parseFloat(price), available_set: parseInt(available_set), status: "pending", enroll_student: 0 }
 
-                    fetch("http://localhost:5000/courses", {
+                    fetch("https://summer-camp-server-steel.vercel.app/courses", {
                         method: "POST",
                         headers: { authorization: `bearer ${token}`,
                         'Content-Type': "application/json",

@@ -22,12 +22,14 @@ import DashBoard from "../Layouts/DashBoard";
 import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstrustorRoute";
+import ErrorElement from "../Shared/ErrorElement";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement:<ErrorElement></ErrorElement>,
         children:
         [
             {
@@ -60,7 +62,7 @@ const router = createBrowserRouter([
         [
             {
                 path:"studentClass",
-                element:<StudentClass></StudentClass>
+                element:<PrivateRoutes><StudentClass></StudentClass></PrivateRoutes>
              },
              {
                  path:"enrolled",

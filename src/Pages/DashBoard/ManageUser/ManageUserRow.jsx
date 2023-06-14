@@ -8,7 +8,7 @@ const ManageUserRow = ({ user, index, refetch }) => {
     const handleAdmin = (id, name) => {
         setIsButtonDisabledAdmin(true);
         setIsButtonDisabledInstructor(false)
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://summer-camp-server-steel.vercel.app/users/admin/${id}`, {
             method: "PATCH"
         })
             .then(res => res.json())
@@ -30,7 +30,7 @@ const ManageUserRow = ({ user, index, refetch }) => {
     const handleInstructor = (id, name) => {
         setIsButtonDisabledInstructor(true);
         setIsButtonDisabledAdmin(false)
-        fetch(`http://localhost:5000/users/instructor/${id}`, {
+        fetch(`https://summer-camp-server-steel.vercel.app/users/instructor/${id}`, {
             method: "PATCH"
         })
             .then(res => res.json())
@@ -61,7 +61,7 @@ const ManageUserRow = ({ user, index, refetch }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/users/${id}`, {
+                fetch(`https://summer-camp-server-steel.vercel.app/users/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

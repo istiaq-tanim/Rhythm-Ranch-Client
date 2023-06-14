@@ -9,7 +9,7 @@ const FeedBack = () => {
     console.log(id)
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:5000/courses/feedback/${id}`, {
+        fetch(`https://summer-camp-server-steel.vercel.app/courses/feedback/${id}`, {
             method: 'POST',
             headers: { authorization: `bearer ${token}`,
             'Content-Type': "application/json",

@@ -9,7 +9,7 @@ const ManageClassesRow = ({ item , refetch}) => {
     const handleApprove = (id) =>
     {
         setIsButtonDisabled(true)
-        fetch(`http://localhost:5000/courses/${id}`,{
+        fetch(`https://summer-camp-server-steel.vercel.app/courses/${id}`,{
             method: "PATCH"
         })
         .then(res => res.json())
@@ -30,7 +30,7 @@ const ManageClassesRow = ({ item , refetch}) => {
     const handleDeny = (id) =>
     {
         setIsButtonDisabled(true)
-        fetch(`http://localhost:5000/courses/deny/${id}`,{
+        fetch(`https://summer-camp-server-steel.vercel.app/courses/deny/${id}`,{
             method: "PATCH"
         })
         .then(res => res.json())

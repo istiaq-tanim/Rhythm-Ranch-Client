@@ -14,7 +14,7 @@ const CheckoutForm = ({ price , class_id}) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://summer-camp-server-steel.vercel.app/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ price })
@@ -78,7 +78,7 @@ const CheckoutForm = ({ price , class_id}) => {
                 class_id
             }
 
-            fetch("http://localhost:5000/payments", {
+            fetch("https://summer-camp-server-steel.vercel.app/payments", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify( payment )

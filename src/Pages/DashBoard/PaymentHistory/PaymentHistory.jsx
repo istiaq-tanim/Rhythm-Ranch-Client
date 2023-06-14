@@ -9,7 +9,7 @@ const PaymentHistory = () => {
     const token = localStorage.getItem("access-token")
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/paymentHistory?email=${user?.email}`, { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } })
+        axios.get(`https://summer-camp-server-steel.vercel.app/paymentHistory?email=${user?.email}`, { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } })
             .then(res => setPayment(res.data))
     }, [token, user?.email])
 

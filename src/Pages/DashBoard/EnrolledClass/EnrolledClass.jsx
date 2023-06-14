@@ -8,7 +8,7 @@ const EnrolledClass = () => {
     const [enroll, setEnroll] = useState([])
     const token=localStorage.getItem("access-token")
     useEffect(() => {
-        axios.get(`http://localhost:5000/enroll/${user?.email}`, {headers: {Authorization: `Bearer ${token}`,'Content-Type': 'application/json'}})
+        axios.get(`https://summer-camp-server-steel.vercel.app/enroll/${user?.email}`, {headers: {Authorization: `Bearer ${token}`,'Content-Type': 'application/json'}})
         .then(res => setEnroll(res.data))
     }, [token, user?.email])
 

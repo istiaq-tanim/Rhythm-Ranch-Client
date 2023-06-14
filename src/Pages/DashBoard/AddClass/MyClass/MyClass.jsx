@@ -8,7 +8,7 @@ const MyClass = () => {
     const token=localStorage.getItem("access-token")
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/instructorClasses?email=${user.email}`, { headers: {
+        fetch(`https://summer-camp-server-steel.vercel.app/instructorClasses?email=${user.email}`, { headers: {
                      authorization: `bearer ${token}`
                 }})
                 .then(res => res.json())
@@ -27,6 +27,7 @@ const MyClass = () => {
                             <th>Class Image</th>
                             <th>Instructor Name</th>
                             <th>Available Seat</th>
+                            <th>Enroll Student</th>
                             <th>Price</th>
                             <th>Status</th>
                             <th>FeedBack</th>
@@ -47,5 +48,5 @@ const MyClass = () => {
 
 export default MyClass;
 
-// axios.get(`http://localhost:5000/instructorClasses?email=${user.email}`)
+// axios.get(`https://summer-camp-server-steel.vercel.app/instructorClasses?email=${user.email}`)
 // .then(res => setMyClass(res.data))

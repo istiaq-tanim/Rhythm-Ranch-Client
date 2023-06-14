@@ -1,21 +1,16 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaBookReader, FaHome, FaUsers } from 'react-icons/fa';
 import { HiUserGroup } from "react-icons/hi2";
-import useAuth from "../hooks/useAuth";
-import { useEffect, useState } from "react";
+// import useAuth from "../hooks/useAuth";
+// import { useEffect, useState } from "react";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from './../hooks/useInstructor';
 
 
 
 const DashBoard = () => {
-    const {user}=useAuth()
-    const [role,setRole]=useState("")
-
-    useEffect(()=>{
-        fetch(`http://localhost:5000/users/${user?.email}`)
-        .then(res => res.json())
-        .then(data => setRole(data.role))
-
-    },[user?.email])
+    const [isAdmin]=useAdmin()
+    const [isInstructor]=useInstructor()
 
     return (
         <div>
@@ -30,13 +25,15 @@ const DashBoard = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 h-full bg-cyan-200 text-base-content">
                         {
-                            role === "admin" ? <>
+                            isAdmin ? <>
                                 <li className="text-lg"><NavLink to="/dashboard/manageClasses">Manage Classes</NavLink></li>
                                 <li className="text-lg"><NavLink to="/dashboard/manageUser"><FaUsers></FaUsers>Manage Users</NavLink></li>
-                            </> : role === "instructor" ? <>
+                            </> 
+                            : isInstructor ? <>
                             <li className="text-lg"><NavLink to="/dashboard/addClass">Add a Classes</NavLink></li>
                             <li className="text-lg"><NavLink to="/dashboard/myClass">My Class</NavLink></li>
-                            </> :
+                            </> 
+                            :
                             <>
                              <li className="text-lg"><NavLink to="/dashboard/studentClass">My Selected Class</NavLink></li>
                              <li className="text-lg"><NavLink to="/dashboard/enrolled">My Enrolled Course</NavLink></li>

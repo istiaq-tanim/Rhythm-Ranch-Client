@@ -4,10 +4,11 @@ import PopularClasesCard from "./PopularClasesCard";
 
 
 
+
 const PopularClassSection = () => {
     const [classesItems, setClassesItems] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/popularCourses")
+        fetch("https://summer-camp-server-steel.vercel.app/popularCourses")
             .then(res => res.json())
             .then(data => setClassesItems(data))
     }, [])
@@ -15,11 +16,13 @@ const PopularClassSection = () => {
     return (
         <Container>
             <h3 className="text-3xl text-center font-primary font-bold">Popular Classes</h3>
-            <div className="grid grid-cols-3 gap-10 mt-10">
+            
+            <div className="lg:grid grid-cols-3 gap-10 mt-10">
                 {
                     classesItems.map(item => <PopularClasesCard key={item._id} item={item}></PopularClasesCard>)
                 }
             </div>
+            
         </Container>
     );
 };

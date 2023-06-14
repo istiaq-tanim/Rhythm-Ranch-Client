@@ -1,5 +1,5 @@
 const MyClassRow = ({item}) => {
-    const {class_name,image,instructor_name,available_set,price,status,feedback}=item
+    const {class_name,image,instructor_name,available_set,price,status,feedback,enroll_student}=item
     return (
        
         <tr className="text-center">
@@ -9,6 +9,7 @@ const MyClassRow = ({item}) => {
         </div></th>
         <th>{instructor_name}</th>
         <th>{available_set}</th>
+        <th>{enroll_student}</th>
         <th>${price}</th>
         <th>{status}</th>
         <th>{
