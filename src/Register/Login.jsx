@@ -15,8 +15,7 @@ const Login = () => {
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
     const [open, setOpen] = useState(true)
-    const handleClick = () =>
-    {
+    const handleClick = () => {
         setOpen(!open)
     }
 
@@ -62,7 +61,7 @@ const Login = () => {
 
                             {errors.email && <span className="text-red-500">Email is required</span>}
                         </div>
-                        <div className="mb-2 relative">
+                        <div className="mb-2 ">
                             <label
 
                                 className="block text-sm font-semibold text-gray-800"
@@ -70,12 +69,12 @@ const Login = () => {
                                 Password
                             </label>
                             <input
-                                type={open ? "password" : "text" }
+                                type={open ? "password" : "text"}
                                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                 {...register("password", { required: true })}
 
                             />{errors.password && <span className="text-red-500">Password is required</span>}
-                            <p className="absolute top-10 right-5 text-lg"><button onClick={handleClick}>{open ? <HiEye></HiEye> : <HiEyeSlash></HiEyeSlash>}</button></p>
+
                         </div>
                         <div className="mt-6">
                             <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
@@ -83,6 +82,7 @@ const Login = () => {
                             </button>
                         </div>
                     </form>
+                    <p className="relative -top-24 left-[480px] text-lg"><button onClick={handleClick}>{open ? <HiEye></HiEye> : <HiEyeSlash></HiEyeSlash>}</button></p>
                     <SocialLogin></SocialLogin>
                     <p className="mt-8 text-xs font-light text-center text-gray-700">
                         {" "}

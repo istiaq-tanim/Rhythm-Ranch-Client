@@ -17,7 +17,7 @@ const Navbar = () => {
   const [isAdmin] = useAdmin()
   const [isInstructor] = useInstructor()
 
-  
+
   const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light")
   const handleToggle = (event) => {
     if (event.target.checked) {
@@ -76,19 +76,20 @@ const Navbar = () => {
               Classes
             </NavLink>
           </li>
-          <span className="font-bold font-secondary">
-            {
-              isAdmin ? <NavLink to='/dashboard/manageUser' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>DashBoard</NavLink>
-                : isInstructor ?
-                  <NavLink to='/dashboard/addClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
-                    DashBoard</NavLink> :
-                  <NavLink to='/dashboard/studentClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
-                    DashBoard</NavLink>
-            }
 
-          </span>
           {user ?
             <>
+              <span className="font-bold font-secondary">
+                {
+                  isAdmin ? <NavLink to='/dashboard/manageUser' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>DashBoard</NavLink>
+                    : isInstructor ?
+                      <NavLink to='/dashboard/addClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
+                        DashBoard</NavLink> :
+                      <NavLink to='/dashboard/studentClass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')}>
+                        DashBoard</NavLink>
+                }
+
+              </span>
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip-success tooltip" data-tip={user.displayName}>
                 <div className="w-10 rounded-full" >
                   <img src={user.photoURL} />
@@ -161,6 +162,22 @@ const Navbar = () => {
                       <Link to='/' className='default'>
                         Home
                       </Link>
+                    </li>
+                    <li className="font-bold font-secondary">
+                      <NavLink
+                        to='/instructor'
+                        className={({ isActive }) => (isActive ? 'text-blue-500' : '')}
+                      >
+                        Instructors
+                      </NavLink>
+                    </li>
+                    <li className="font-bold font-secondary">
+                      <NavLink
+                        to='/classes'
+                        className={({ isActive }) => (isActive ? 'text-blue-500' : '')}
+                      >
+                        Classes
+                      </NavLink>
                     </li>
                     <li className='font-bold'>
                       <NavLink

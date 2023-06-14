@@ -62,7 +62,7 @@ const router = createBrowserRouter([
         [
             {
                 path:"studentClass",
-                element:<PrivateRoutes><StudentClass></StudentClass></PrivateRoutes>
+                element:<StudentClass></StudentClass>
              },
              {
                  path:"enrolled",
